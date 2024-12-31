@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Version</title>
+</head>
+<body>
+   
+      <div>
+        <h1>Browser Information</h1>
+        <p id="browser-info"></p>
+      </div>
+
+    <script>
+        
+        function getBrowserVersion() {
+            const userAgent = navigator.userAgent;
+            let browserInfo = "Unknown Browser";
+
+            if (userAgent.includes("Chrome") && !userAgent.includes("Edg") && !userAgent.includes("OPR")) {
+                const version = userAgent.match(/Chrome\/(\d+\.\d+\.\d+\.\d+)/);
+                browserInfo = `Google Chrome Version: ${version[1]}`;
+            } else if (userAgent.includes("Firefox")) {
+                const version = userAgent.match(/Firefox\/(\d+\.\d+)/);
+                browserInfo = `Mozilla Firefox Version: ${version[1]}`;
+            } else if (userAgent.includes("Edg")) {
+                const version = userAgent.match(/Edg\/(\d+\.\d+)/);
+                browserInfo = `Microsoft Edge Version: ${version[1]}`;
+            } else if (userAgent.includes("OPR")) {
+                const version = userAgent.match(/OPR\/(\d+\.\d+)/);
+                browserInfo = `Opera Version: ${version[1]}`;
+            } else if (userAgent.includes("Safari") && !userAgent.includes("Chrome")) {
+                const version = userAgent.match(/Version\/(\d+\.\d+)/);
+                browserInfo = `Safari Version: ${version[1]}`;
+            }
+
+            return browserInfo;
+        }
+
+        // Display the browser information on the screen
+        document.getElementById("browser-info").textContent = getBrowserVersion();
+    </script>
+</body>
+</html>
