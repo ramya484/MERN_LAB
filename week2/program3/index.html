@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number to Words Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Number to Words Converter</h2>
+        <label for="number">Enter a number (0-999):</label>
+        <input type="text" id="number" placeholder="Enter a number">
+        <button onclick="convertToWords()">Convert to Words</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function convertToWords() {
+            const numberInput = document.getElementById('number').value.trim();
+            const resultBox = document.getElementById('result');
+
+            if (isNaN(numberInput) || numberInput === '') {
+                resultBox.textContent = 'Not a number';
+                return;
+            }
+
+            const number = parseInt(numberInput);
+
+            if (number < 0 || number > 999) {
+                resultBox.textContent = 'Out of range';
+                return;
+            }
+
+            resultBox.textContent = numberToWords(number);
+        }
+
+        function numberToWords(num) {
+            const ones = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+            const teens = ['Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+            const tens = ['Ten', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+            if (num === 0) return ones[0];
+
+            let words = '';
+
+            if (Math.floor(num / 100) > 0) {
+                words += ones[Math.floor(num / 100)] + ' Hundred';
+                num %= 100;
+                if (num > 0) words += ' and ';
+            }
+
+            if (num > 10 && num < 20) {
+                words += teens[num - 11];
+            } else {
+                if (Math.floor(num / 10) > 0) {
+                    words += tens[Math.floor(num / 10) - 1];
+                    num %= 10;
+                    if (num > 0) words += ' ';
+                }
+
+                if (num > 0) {
+                    words += ones[num];
+                }
+            }
+
+            return words;
+        }
+    </script>
+</body>
+</html>

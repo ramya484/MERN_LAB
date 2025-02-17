@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analysis</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #2e3b4e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #f1f1f1;
+        }
+        .container {
+            background: #3a4756;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+            font-weight: 600;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #555;
+            border-radius: 8px;
+            background-color: #2c353e;
+            color: #f1f1f1;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+        textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        button {
+            padding: 14px 24px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #4c5a67;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #e0e0e0;
+            white-space: pre-wrap;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Analysis</h1>
+        <textarea id="userInput" placeholder="Enter text here..."></textarea>
+        <button onclick="analyzeText()">Submit</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        function analyzeText() {
+            var userInput = document.getElementById("userInput").value;
+            var charCount = userInput.length;
+            var wordCount = userInput.trim().split(/\s+/).length;
+            if (userInput.trim() === "") wordCount = 0;
+            var lineCount = userInput.split('\n').length;
+            document.getElementById('result').innerHTML = "Character count: " + charCount + 
+"\nWord count: " + wordCount + "\nLine count: " + lineCount;
+        }
+    </script>
+</body>
+</html>

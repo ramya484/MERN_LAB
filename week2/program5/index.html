@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Input</title>
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+input, button {
+  padding: 10px;
+  margin: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+}
+input {
+  border: 1px solid #bbb;
+  width: 220px;
+}
+button {
+  background: #ff4757;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background: #e84118;
+}
+#output {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+</style>
+</head>
+<body>
+<h2>User Input</h2>
+<input type="text" id="userinput" placeholder="Enter something"/>
+<button onclick="storeAndDisplay()">Submit</button>
+<div id="output"></div>
+<script>
+function storeAndDisplay() {
+  document.getElementById('output').textContent = "You entered: " + document.getElementById("userinput").value;
+}
+</script>
+</body>
+</html>

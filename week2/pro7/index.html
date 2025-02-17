@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uppercase Check</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #eef2f3;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+</style>
+</head>
+<body>
+<h2>Enter Your Name</h2>
+<script>
+function check() {
+  let username = prompt("Please enter your name:");
+  if (username && username.charAt(0) === username.charAt(0).toUpperCase()) {
+    alert("First letter is uppercase! Thank you.");
+  } else {
+    alert("The first letter should be uppercase. Please try again.");
+    check();
+  }
+}
+check();
+</script>
+</body>
+</html>
