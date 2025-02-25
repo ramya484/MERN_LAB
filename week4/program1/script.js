@@ -2,7 +2,6 @@ const http = require('http');
 const fs = require('fs');
 const path = './students.json';
 
-// Utility function to read file data
 function readStudentFile() {
   if (!fs.existsSync(path)) {
     fs.writeFileSync(path, JSON.stringify([]));
@@ -10,23 +9,21 @@ function readStudentFile() {
   const data = fs.readFileSync(path);
   return JSON.parse(data);
 }
-
-// Utility function to write data to file
 function writeStudentFile(data) {
   fs.writeFileSync(path, JSON.stringify(data, null, 2));
 }
 
 const server = http.createServer((req, res) => {
-  // Set content type
+ 
   res.setHeader('Content-Type', 'application/json');
 
   if (req.url === '/students' && req.method === 'GET') {
-    // GET all students
+   
     const students = readStudentFile();
     res.end(JSON.stringify(students));
 
   } else if (req.url === '/students' && req.method === 'POST') {
-    // POST a new student
+    
     let body = '';
     req.on('data', chunk => {
       body += chunk.toString();
@@ -42,7 +39,7 @@ const server = http.createServer((req, res) => {
     });
 
   } else if (req.url.startsWith('/students/') && req.method === 'PUT') {
-    // PUT update a student
+    
     const id = parseInt(req.url.split('/')[2]);
     let body = '';
 
@@ -66,7 +63,7 @@ const server = http.createServer((req, res) => {
     });
 
   } else if (req.url.startsWith('/students/') && req.method === 'DELETE') {
-    // DELETE a student
+    
     const id = parseInt(req.url.split('/')[2]);
     const students = readStudentFile();
     const filteredStudents = students.filter(student => student.id !== id);
